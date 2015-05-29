@@ -32,6 +32,10 @@
     function populate(data) {
       helper.each(data, function(key, value){
         var field = helper('[name='+key+']', $form);
+        if (!field) {
+        	console.log('Skipping:' + key + ':' + value);
+        	return;
+        }
         switch(field.attr('type')) {
           default:
             field.val(value);
@@ -40,13 +44,12 @@
     }
 
     function populateJSON(data) {
+    	populate(JSON.parse(data));
     }
 
     this.populate = populate;
     this.populateJSON = populateJSON;
   }
-
-  FormPopulator.patterns = patterns;
 
   FormPopulator.populateObject = function populateObject(data) {
     if (this.length > 1) {
@@ -61,7 +64,7 @@
       return new Error("jquery-populate-form can only populate one form at a time");
     }
     return new FormPopulator($, this).
-      populateJSON();
+      populateJSON(data);
   };
 
   if (typeof $.fn !== "undefined") {
