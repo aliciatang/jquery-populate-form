@@ -1,0 +1,23 @@
+{
+  "name": "populate-form",
+  "description": "Populates form fields from an object or JSON",
+  "main": "jquery.populate-form.js",
+  "authors": [
+    "Alicia Tang <alicia.x.tang@gmail.com> (https://github.com/aliciatang)"
+  ],
+  "dependencies": {
+    "jquery": ">=1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aliciatang/jquery-populate-form.git"
+  },
+  "ignore": [],
+  "keywords": [
+    "form",
+    "populate",
+    "json",
+    "object"
+  ],
+  "license": "BSD-3-Clause"
+}
