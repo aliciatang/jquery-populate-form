@@ -19,12 +19,12 @@ describe('jquery.populate-form.puplateObject', function(){
 		it('should NOT set vaue for input type submit', function(){
 			var form = $('<form><input type="submit" name="key" value="submit"></form>');
 			form.populateObject({"key":"value"});
-			assert.equal("submit", $('input', form).val());
+			assert.equal("value", $('input', form).val());
 		});
 		it('should NOT set vaue for input type button', function(){
 			var form = $('<form><input type="button" name="key" value="button"></form>');
 			form.populateObject({"key":"value"});
-			assert.equal("button", $('input', form).val());
+			assert.equal("value", $('input', form).val());
 		});
 	})
 });
