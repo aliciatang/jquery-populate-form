@@ -1,5 +1,6 @@
 {
   "name": "populate-form",
+  "version": "1.0.0",
   "description": "Populates form fields from an object or JSON",
   "main": "jquery.populate-form.js",
   "authors": [
@@ -16,7 +17,9 @@
     "type": "git",
     "url": "git://github.com/aliciatang/jquery-populate-form.git"
   },
-  "ignore": [],
+  "ignore": [
+    "test"
+  ],
   "keywords": [
     "form",
     "populate",
