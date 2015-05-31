@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="../bower_components/mocha/mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../jquery.populate-form.js"></script>
+  <script src="../bower_components/mocha/mocha.js"></script>
+  <script src="../bower_components/chai/chai.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="./test.js"></script>
+  <script src="./test_radio.js"></script>
+  <script src="./test_checkbox.js"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery']);
+    mocha.run();
+  </script>
+</body>
+</html>

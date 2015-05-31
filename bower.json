@@ -8,6 +8,10 @@
   "dependencies": {
     "jquery": ">=1.2"
   },
+  "devDependencies": {
+    "mocha": "git://github.com/mochajs/mocha.git#~2.2.5",
+    "chai": "~2.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/aliciatang/jquery-populate-form.git"
