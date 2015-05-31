@@ -11,7 +11,7 @@ describe('jquery.populate-form.puplateObject', function(){
 			assert.isTrue($('input[value="m"]', form).is(":checked"));
 			form.populateObject({"gender":"f"});
 			assert.isTrue($('input[value="f"]', form).is(":checked"));
-		    assert.isFalse($('input[value="m"]', form).is(":checked"));
+			assert.isFalse($('input[value="m"]', form).is(":checked"));
 			assert.deepEqual([{"name":"gender", "value":"f"}], form.serializeArray());
 		});
 	})

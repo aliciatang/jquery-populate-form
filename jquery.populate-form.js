@@ -7,93 +7,93 @@
  */
 (function(root, factory) {
 
-  // AMD
-  if (typeof define === "function" && define.amd) {
-    define(["exports", "jquery"], function(exports, $) {
-      return factory(exports, $);
-    });
-  }
+	// AMD
+	if (typeof define === "function" && define.amd) {
+		define(["exports", "jquery"], function(exports, $) {
+			return factory(exports, $);
+		});
+	}
 
-  // CommonJS
-  else if (typeof exports !== "undefined") {
-    var $ = require("jquery");
-    factory(exports, $);
-  }
+	// CommonJS
+	else if (typeof exports !== "undefined") {
+		var $ = require("jquery");
+		factory(exports, $);
+	}
 
-  // Browser
-  else {
-    factory(root, (root.jQuery || root.Zepto || root.ender || root.$));
-  }
+	// Browser
+	else {
+		factory(root, (root.jQuery || root.Zepto || root.ender || root.$));
+	}
 
 }(this, function(exports, $) {
 
-  function FormPopulator(helper, $form) {
-    function select(field, key, value) {
-      if (!field.is('select')) return;
-      
-      helper('option', field).each(function() {
-         if(this.value == value) {}
-      });
-    }
+	function FormPopulator(helper, $form) {
+		function select(field, key, value) {
+			if (!field.is('select')) return;
 
-    function populate(data) {
-      helper.each(data, function(key, value) {
-        var field = helper('[name='+key+']', $form);
-        if (!field) {
-        	console.log('Skipping:' + key + ':' + value);
-        	return;
-        }
-        switch(field.attr('type')) {
-        case 'submit': break;
-        case 'button': break;
-        case 'radio':
-        	field.each(function(){
-        		if($(this).attr('value') == value) $(this).attr("checked", "checked");
-        		else $(this).removeAttr("checked");
-        	});
-        	break;
-        case 'checkbox':
-        	field.each(function(){
-        		value = $.isArray(value) ? value : [value];
-        		if($.inArray($(this).attr('value'), value)) $(this).attr("checked", "checked");
-        		else $(this).removeAttr("checked");
-        	});
-          default:
-            field.val(value);
-        }
-      });
-    }
+			helper('option', field).each(function() {
+				if(this.value == value) {}
+			});
+		}
 
-    function populateJSON(data) {
-    	populate(JSON.parse(data));
-    }
+		function populate(data) {
+			helper.each(data, function(key, value) {
+				var field = helper('[name='+key+']', $form);
+				if (!field) {
+					console.log('Skipping:' + key + ':' + value);
+					return;
+				}
+				switch(field.attr('type')) {
+				case 'submit': break;
+				case 'button': break;
+				case 'radio':
+					field.each(function(){
+						if($(this).attr('value') == value) $(this).attr("checked", "checked");
+						else $(this).removeAttr("checked");
+					});
+					break;
+				case 'checkbox':
+					field.each(function(){
+						value = $.isArray(value) ? value : [value];
+						if($.inArray($(this).attr('value'), value)) $(this).attr("checked", "checked");
+						else $(this).removeAttr("checked");
+					});
+				default:
+					field.val(value);
+				}
+			});
+		}
 
-    this.populate = populate;
-    this.populateJSON = populateJSON;
-  }
+		function populateJSON(data) {
+			populate(JSON.parse(data));
+		}
 
-  FormPopulator.populateObject = function populateObject(data) {
-    if (this.length > 1) {
-      return new Error("jquery-populate-form can only populate one form at a time");
-    }
-    return new FormPopulator($, this).
-      populate(data);
-  };
+		this.populate = populate;
+		this.populateJSON = populateJSON;
+	}
 
-  FormPopulator.populateJSON = function populateJSON(data) {
-    if (this.length > 1) {
-      return new Error("jquery-populate-form can only populate one form at a time");
-    }
-    return new FormPopulator($, this).
-      populateJSON(data);
-  };
+	FormPopulator.populateObject = function populateObject(data) {
+		if (this.length > 1) {
+			return new Error("jquery-populate-form can only populate one form at a time");
+		}
+		return new FormPopulator($, this).
+		populate(data);
+	};
 
-  if (typeof $.fn !== "undefined") {
-    $.fn.populateObject = FormPopulator.populateObject;
-    $.fn.populateJSON   = FormPopulator.populateJSON;
-  }
+	FormPopulator.populateJSON = function populateJSON(data) {
+		if (this.length > 1) {
+			return new Error("jquery-populate-form can only populate one form at a time");
+		}
+		return new FormPopulator($, this).
+		populateJSON(data);
+	};
 
-  exports.FormPopulator = FormPopulator;
+	if (typeof $.fn !== "undefined") {
+		$.fn.populateObject = FormPopulator.populateObject;
+		$.fn.populateJSON   = FormPopulator.populateJSON;
+	}
 
-  return FormPopulator;
+	exports.FormPopulator = FormPopulator;
+
+	return FormPopulator;
 }));
