@@ -43,17 +43,7 @@
 					console.log('Skipping:' + key + ':' + value);
 					return;
 				}
-				if (field.is('select')) {
-					value = $.isArray(value) ? value : [value];
-					$('option', field).each(function() {
-						if ($.inArray($(this).attr('value'),value))
-							$(this).attr("selected",true);
-						else $(this).removeAttr("selected");
-					});
-				}
 				switch(field.attr('type')) {
-				case 'submit': break;
-				case 'button': break;
 				case 'radio':
 					field.each(function(){
 						if($(this).attr('value') == value) $(this).attr("checked", "checked");
