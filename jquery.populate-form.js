@@ -38,7 +38,7 @@
 
 		function populate(data) {
 			helper.each(data, function(key, value) {
-				var field = helper('[name='+key+']', $form);
+				var field = helper('[name="'+key+'"]', $form);
 				if (!field) {
 					console.log('Skipping:' + key + ':' + value);
 					return;
